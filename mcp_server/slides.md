@@ -7,8 +7,6 @@ paginate: true
 # MCPサーバー入門
 ## 15分でわかるModel Context Protocol
 
-社内LT発表
-
 ---
 
 # アジェンダ
@@ -314,11 +312,11 @@ python server_new.py
 - 更なる自動化・効率化
 
 ---
+# 余談
+LTのサンプルコードとかが置いておけるsnippetリポジトリなどがあるといいかなあと思いました。
 
-# 質疑応答
-
-## ご質問をお待ちしております！
-
+---
+# 参考リンク
 ### 参考資料
 - [MCP公式ドキュメント](https://github.com/modelcontextprotocol/servers)
 - [サンプルコード](https://github.com/your-repo/mcp-demo)
@@ -330,4 +328,5 @@ python server_new.py
 - `test_natural_language.py` - テストスクリプト
 - `requirements.txt` - 依存関係
 
-**ありがとうございました！**
+---
+#**ありがとうございました！**
