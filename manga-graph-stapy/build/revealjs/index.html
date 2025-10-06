@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Sphinxでのプレゼンテーションを体験する</title>
+  <title>GraphRAG：グラフDBを使ったLLM生成</title>
     <link rel="stylesheet" type="text/css" href="_static/revealjs/dist/reveal.css?v=d4488b42" />
-    <link rel="stylesheet" href="_static/revealjs/dist/theme/black.css" type="text/css" />
+    <link rel="stylesheet" href="_static/revealjs/dist/theme/serif.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/revealjs/plugin/highlight/zenburn.css?v=83d5745d" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,28 +18,375 @@
         <div class="slides" role="main">
             <section >
 <section >
-<h1>Sphinxでのプレゼンテーションを体験する</h1>
+<h1>GraphRAG：グラフDBを使ったLLM生成</h1>
 </section>
 </section>
 <section >
 <section >
-<h2>準備</h2>
-</section>
-<section >
-<h3>Python仮想環境を用意する</h3>
-<p>ローカル共通環境に不必要なライブラリをインストールしないために、
-<code class="docutils literal notranslate"><span class="pre">venv</span></code> を使って仮想環境を用意します。</p>
-</section>
-<section >
-<h3>ドキュメントを新規作成する</h3>
-<p><code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> を使って、ドキュメントに必要なファイル一式を用意します。</p>
+<h2>自作漫画DBを用いた具体例を用いて</h2>
 </section>
 </section>
 <section >
 <section >
-<h2>執筆</h2>
-<p>(TBD)</p>
+<h2>📚 GraphRAGで漫画レコメンドを実現する</h2>
+<ul class="simple">
+<li><p>MADB（メディア芸術データベース）を活用したGraphRAG事例を紹介</p></li>
+<li><p>グラフDBとLLMを組み合わせる設計・実装・統合のポイントを共有</p></li>
+<li><p>20分で「なぜGraphRAGか」「どう作るか」「どう見せるか」を俯瞰</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>冒頭でGraphRAGの定義と今日扱う事例（漫画レコメンド）を導入。
+セッションのゴールを明示し、期待値をそろえます。</p>
+</div>
 </section>
+</section>
+<section >
+<section >
+<h1>タイムラインとアウトライン</h1>
+<ul class="simple">
+<li><p>📝 セッション構成と時間配分を冒頭で共有</p></li>
+<li><p>20分の全体像を掴んでもらい、聴衆の期待値を合わせる</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 52.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>セクション</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>目安</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>自己紹介</p></td>
+<td><p>バックグラウンドとGraphRAGに取り組む狙い</p></td>
+<td><p>1分</p></td>
+</tr>
+<tr class="row-odd"><td><p>RAGとGraphRAGの基礎</p></td>
+<td><p>RAGの構造と限界、GraphRAGが解く課題</p></td>
+<td><p>4分</p></td>
+</tr>
+<tr class="row-even"><td><p>漫画データのグラフモデリング</p></td>
+<td><p>MADBの紹介、スキーマ設計、変換プロセス</p></td>
+<td><p>6分</p></td>
+</tr>
+<tr class="row-odd"><td><p>APIと可視化</p></td>
+<td><p>提供インターフェースとグラフの見せ方</p></td>
+<td><p>4分</p></td>
+</tr>
+<tr class="row-even"><td><p>GraphRAGとLLMの統合</p></td>
+<td><p>クエリ→検索→整形→LLM入力の実装例</p></td>
+<td><p>3分</p></td>
+</tr>
+<tr class="row-odd"><td><p>デモ</p></td>
+<td><p>漫画レコメンド生成フローを実演</p></td>
+<td><p>1分</p></td>
+</tr>
+<tr class="row-even"><td><p>まとめ</p></td>
+<td><p>学びと次の一歩</p></td>
+<td><p>1分</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>細かい時間配分は会場の反応に合わせ柔軟に。全体20分で一周する構成。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>自己紹介</h1>
+<ul class="simple">
+<li><p>👋 sea-turt1e / Data &amp; ML Engineer</p></li>
+<li><p>企業内データ活用と生成AIのPoCを多数担当</p></li>
+<li><p>GraphDB, LLM, Recommendationの実験が好き</p></li>
+<li><p>今日持ち帰ってほしいこと: 「GraphRAGの型」と「導入の勘所」</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>GraphDBに触れるきっかけや、漫画データに注目した経緯を一言添えると親近感が湧きます。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>いま広まるRAGとは</h1>
+<ul class="simple">
+<li><p>Retrieval-Augmented Generation</p></li>
+<li><p>ベクトルDB＋プロンプト拡張でLLMの幻覚削減</p></li>
+<li><p>企業内ドキュメント検索、FAQ自動応答、レポート生成などで普及</p></li>
+<li><p><strong>強み:</strong> 実装しやすい・既存テキスト資産を活用できる</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>グラフの話に入る前に、RAGの仕組みを簡潔にリマインド。図解があるとわかりやすい。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>従来RAGの課題</h1>
+<ul class="simple">
+<li><p>⚠️ 文書の粒度に依存しがちで、関係性の飛び越えが苦手</p></li>
+<li><p>多段の意味推論やパス探索をLLMだけに任せるとコスト・時間が増加</p></li>
+<li><p>構造化データやイベント系列を扱う際、情報の欠落が生じる</p></li>
+<li><p>キーワードベースのフィルタリングとの組み合わせが複雑化</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>具体例: 作者とスタッフのつながり、連載誌を跨ぐ文脈など。RAGだけでは拾いにくいケースを示す。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>GraphRAGが拓く可能性</h1>
+<ul class="simple">
+<li><p>GraphDBで知識の構造をノード＋エッジとして表現</p></li>
+<li><p>意味的な距離・パスを活用した探索が可能</p></li>
+<li><p>LLMへ渡すコンテキストを関係性込みで組み立てられる</p></li>
+<li><p>ハイブリッド検索（ベクトル＋グラフクエリ）で再現率と精度を両立</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>「構造化された知識をLLMに橋渡しする技術」と定義づけると腹落ちしやすい。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>データセット: MADBとは</h1>
+<ul class="simple">
+<li><p>📚 文化庁が公開するメディア芸術データベース（MADB）</p></li>
+<li><p>漫画・アニメ・ゲームなどの作品情報を収録</p></li>
+<li><p>作品、作者、スタッフ、雑誌、出版社、刊行年など多様な属性</p></li>
+<li><p>CC BY 4.0準拠で利用可能（要クレジット表記）</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>漫画領域にフォーカスする理由：人物・作品・メディアの関係がリッチでGraphRAGに向いている。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>グラフモデリングの流れ</h1>
+<ol class="arabic simple">
+<li><p>データ収集: MADB APIからJSONをバッチ取得</p></li>
+<li><p>正規化: 作品／人／メディアなどのエンティティに分割</p></li>
+<li><p>関係抽出: 連載誌、原作者、作画担当、受賞歴をエッジ化</p></li>
+<li><p>付加情報: タグ、ジャンル、年代をノード属性へ格納</p></li>
+<li><p>グラフDBへ投入: Neo4j / ArangoDB / Neptuneなどを選択</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>各ステップでスキーマ設計、正規化の工夫を紹介。具体的なツール（pandas, networkxなど）に触れる。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>スキーマ設計の例</h1>
+<table class="docutils align-default" id="id14">
+<caption><span class="caption-text">主なノードとエッジ</span></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ノード</p></th>
+<th class="head"><p>主な属性</p></th>
+<th class="head"><p>主なエッジ</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Work (作品)</p></td>
+<td><p>タイトル, 巻数, 連載開始年</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(WORK)-[SERIALIZED_IN]-&gt;(MAGAZINE)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Person (作者/スタッフ)</p></td>
+<td><p>役割, 受賞歴, 外部ID</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(PERSON)-[CREATED]-&gt;(WORK)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Magazine (雑誌)</p></td>
+<td><p>出版社, ターゲット層, 発行頻度</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(MAGAZINE)-[PUBLISHED_BY]-&gt;(PUBLISHER)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Tag (ジャンル/テーマ)</p></td>
+<td><p>タグ名, 信頼スコア</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(WORK)-[HAS_TAG]-&gt;(TAG)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>グラフ図を表示できるとベター。テキストでも、エッジの向きと役割を強調する。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>変換パイプライン（実装例）</h1>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">データ整形からグラフ投入まで（フローチャート）</span></div>
+<pre><code data-trim data-noescape class="text">MADB API -&gt; ETL Script -&gt; Validation -&gt; Graph DB Loader -&gt; Neo4j
+                                |                         └-&gt; Parquet Snapshot
+                                └-&gt; Error Store</code></pre>
+</div>
+<ul class="simple">
+<li><p>Python: <code class="docutils literal notranslate"><span class="pre">pydantic</span></code> でスキーマ検証、<code class="docutils literal notranslate"><span class="pre">networkx</span></code> でパス分析</p></li>
+<li><p>ローダー: <code class="docutils literal notranslate"><span class="pre">neo4j-admin</span> <span class="pre">import</span></code> や <code class="docutils literal notranslate"><span class="pre">py2neo</span></code> を用途で使い分け</p></li>
+<li><p>バッチ更新＋差分反映の設計で運用を簡潔に</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Flow図を示すことで、ETLからグラフ投入までの全体像を共有。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>API設計とユースケース</h1>
+<ul class="simple">
+<li><p>GraphQL or REST APIで作品・人物・タグを横断検索</p></li>
+<li><p>エントリポイント例
+- <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/works/{work_id}</span></code>
+- <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/works/{work_id}/related?max_depth=2</span></code>
+- <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/recommendations</span></code> with query graph</p></li>
+<li><p>ユーザー向けUI: 作品検索、人物関係の探索、レコメンドの根拠表示</p></li>
+<li><p>内部ユースケース: 編集部の企画検討、過去連載の再発掘、コラボ案の探索</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>レコメンド根拠の説明性（Explainability）を重視する点を強調。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>グラフ可視化のアプローチ</h1>
+<ul class="simple">
+<li><p>一覧: <code class="docutils literal notranslate"><span class="pre">cytoscape.js</span></code> / <code class="docutils literal notranslate"><span class="pre">Sigma.js</span></code> でWeb向け可視化</p></li>
+<li><p>分析: <code class="docutils literal notranslate"><span class="pre">Gephi</span></code> や <code class="docutils literal notranslate"><span class="pre">Neo4j</span> <span class="pre">Bloom</span></code> でエキスパート向け探索</p></li>
+<li><p>LLM向け: パス抽出結果をナレッジパネル形式で整形</p></li>
+<li><p>表現例
+- 共著者ネットワーク
+- 時系列アニメーション（連載年×作品数）
+- タグクラスタを組み合わせたリコメンド理由表示</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>スクリーンショットや動画があればデモであわせて紹介。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>GraphRAGパイプライン</h1>
+<ol class="arabic simple">
+<li><p>ユーザーの自然言語クエリを受け取る</p></li>
+<li><p>グラフ検索（パス探索＋属性フィルタ）で候補スニペットを抽出</p></li>
+<li><p>コンテキストをテンプレートで整形（JSON / Markdown）</p></li>
+<li><p>LLMへプロンプト投入し文章生成</p></li>
+<li><p>生成結果をスコアリングし、説明とともに返却</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Pipelineの各ステップでの工夫（キャッシュ、非同期処理、レート制御）に触れる。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>プロンプト設計の実例</h1>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">コンテキストプロンプトの骨子</span></div>
+<pre><code data-trim data-noescape class="text">あなたは漫画編集部のリコメンドAIです。
+ユーザーの問い: {user_query}
+参考知識:
+{graph_context}
+
+制約:
+- 作品は最大3件
+- 各作品について推奨理由を2文以内で記述
+- 関係性（作者, 雑誌, タグなど）を引用</code></pre>
+</div>
+<ul class="simple">
+<li><p>Graph contextは <code class="docutils literal notranslate"><span class="pre">path</span></code> 単位でまとめるとLLMが読みやすい</p></li>
+<li><p>温度と最大トークンを低めに設定し、説明を安定化</p></li>
+<li><p>評価: <code class="docutils literal notranslate"><span class="pre">LLM-as-a-judge</span></code> + 人手で品質を監視</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>プロンプトに制約とフォーマットを明示することの重要性を強調。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>デモの見どころ</h1>
+<ul class="simple">
+<li><p>🎞️ クエリ例: 「90年代の熱血スポーツ漫画で、作者が同じ作品を教えて」</p></li>
+<li><p>画面フロー
+1. フロントエンドでクエリ入力
+2. グラフ探索結果（人物・雑誌・タグ）を可視化
+3. LLM生成テキストと根拠ハイライトを表示</p></li>
+<li><p>期待するリアクション: 説明付きレコメンドの納得感</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>デモではレスポンス時間を意識し、キャッシュ済みシナリオを準備しておくと安心。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>まとめと今後の展望</h1>
+<ul class="simple">
+<li><p>GraphRAGは「関係性を活かしたLLM活用」に有効</p></li>
+<li><p>グラフ構築は地味だが、説明可能性と再利用性を高める投資</p></li>
+<li><p>次の一歩
+- 運用: 変更データキャプチャと自動再インデックス
+- 評価: オフライン評価指標＋ユーザーフィードバックの循環
+- 応用: コミック以外のドメイン（医療、製造、研究開発）へ展開</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>成果と課題をバランスよく整理し、聴衆の現場での適用イメージを喚起。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>参考リンクとリソース</h1>
+<ul class="simple">
+<li><p>MADB公式サイト: <a class="reference external" href="https://mediaarts-db.bunka.go.jp/">https://mediaarts-db.bunka.go.jp/</a></p></li>
+<li><p>Neo4j Graph Data Science: <a class="reference external" href="https://neo4j.com/developer/graph-data-science/">https://neo4j.com/developer/graph-data-science/</a></p></li>
+<li><p>GraphRAG論文サーベイ（Stanford HAI, 2024）</p></li>
+<li><p>Graph + LLMコミュニティ: Discord <code class="docutils literal notranslate"><span class="pre">#graph-llm</span></code> など</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>会場資料ではURL短縮やQRコードを活用すると便利。</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h1>Q&amp;A</h1>
+<ul class="simple">
+<li><p>ご質問・ディスカッション大歓迎です</p></li>
+<li><p>&#64;sea-turt1e でオンラインでも連絡可能</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>最後にお礼と連絡先を簡潔に。予備スライドを備えておくと安心。</p>
+</div>
 
         </div>
     </div>

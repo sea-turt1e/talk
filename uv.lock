@@ -330,18 +330,32 @@ wheels = [
 ]
 
 [[package]]
+name = "sphinxemoji"
+version = "0.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "sphinx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/47/36/12a061ef2a2c2001c1b083d456db680f59074aef39f9cdd83a7937a4d626/sphinxemoji-0.3.1.tar.gz", hash = "sha256:23ecff1f1e765393e49083b45386b7da81ced97c9a18a1dfd191460a97da3b11", size = 46377, upload-time = "2024-01-18T18:07:44.53Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/95/9f/c872bbf4a2588b700a972d48c6e39087e4d33b3e76c563b4902e5abfbf13/sphinxemoji-0.3.1-py3-none-any.whl", hash = "sha256:dae483695f8d1e90a28a6e9bbccc08d256202afcc1d0fbd33b51b3b4352d439e", size = 46074, upload-time = "2024-01-18T18:07:42.496Z" },
+]
+
+[[package]]
 name = "talk"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "sphinx" },
     { name = "sphinx-revealjs" },
+    { name = "sphinxemoji" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "sphinx", specifier = ">=8.2.3" },
     { name = "sphinx-revealjs", specifier = ">=3.2.0" },
+    { name = "sphinxemoji", specifier = ">=0.3.1" },
 ]
 
 [[package]]

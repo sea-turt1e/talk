@@ -16,6 +16,7 @@ release = "0.0.1"
 
 extensions = [
     "sphinx_revealjs",
+    'sphinxemoji.sphinxemoji',
 ]
 
 revealjs_script_plugins = [
@@ -33,6 +34,8 @@ revealjs_css_files = [
     # プラグインとセットで対応するCSSが同梱されているので、これを追加で使用
     "revealjs/plugin/highlight/zenburn.css",
 ]
+
+revealjs_style_theme = 'serif'
 
 templates_path = ["_templates"]
 exclude_patterns = []
