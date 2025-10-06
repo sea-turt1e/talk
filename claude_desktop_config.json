@@ -1,9 +1,0 @@
-{
-    "mcpServers": {
-      "company-data": {
-        "command": "path/to/python",
-        "args": ["path/to/server.py"],
-        "cwd": "path/to/mcp_server"
-      }
-    }
-  }
