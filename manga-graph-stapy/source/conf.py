@@ -57,11 +57,27 @@ revealjs_script_conf = {
     "center": True,
     "transition": "none",
     "slideNumber": "c/t",
-    # スライドのサイズ設定
+    # スライドのサイズ設定 - 16:9のアスペクト比
     "width": 1280,
     "height": 720,
-    # コンテンツの自動スケーリング
-    "margin": 0.1,  # スライドの余白
-    "minScale": 0.2,  # 最小スケール
-    "maxScale": 2.0,  # 最大スケール
+    # コンテンツの自動スケーリング設定
+    "margin": 0.04,  # より小さい余白で最大限にスペースを活用
+    "minScale": 0.2,
+    "maxScale": 1.5,
+    # テキストの自動調整を有効化
+    "autoSlide": 0,
+    "loop": False,
+    "rtl": False,
+    "shuffle": False,
+    "fragments": True,
+    "embedded": False,
+    "help": True,
+    "showNotes": False,
+    "autoPlayMedia": None,
+    "preloadIframes": None,
+    "autoAnimate": True,
+    "autoAnimateMatcher": None,
+    "autoAnimateEasing": "ease",
+    "autoAnimateDuration": 1.0,
+    "autoAnimateUnmatched": True,
 }

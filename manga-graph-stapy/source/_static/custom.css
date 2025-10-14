@@ -1,78 +1,117 @@
-/* タイトルスライドの調整 */
+:root {
+    --slide-base-font: clamp(18px, 2.5vw, 32px);
+    --slide-heading-1: clamp(36px, 6vw, 68px);
+    --slide-heading-2: clamp(28px, 4.5vw, 52px);
+    --slide-heading-3: clamp(22px, 3.5vw, 40px);
+    --slide-body-font: clamp(18px, 2vw, 28px);
+    --slide-small-font: clamp(14px, 1.5vw, 22px);
+}
+
+.reveal {
+    font-size: var(--slide-base-font);
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.reveal .slides {
+    padding: min(3vh, 2rem) min(5vw, 3rem);
+}
+
+.reveal .slides section {
+    display: block;
+    padding: min(3vh, 2rem) min(5vw, 3rem);
+    box-sizing: border-box;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
 .reveal h1 {
-    font-size: 2.2em !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.3em !important;
-    word-wrap: break-word !important;
+    font-size: var(--slide-heading-1);
+    line-height: 1.1;
+    margin: 0 0 min(2vh, 1rem);
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
-/* サブタイトルの調整 */
-.reveal .subtitle {
-    font-size: 1.3em !important;
-    margin-top: 0.5em !important;
-}
-
-/* 通常のh2見出しの調整 */
 .reveal h2 {
-    font-size: 1.8em !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.5em !important;
+    font-size: var(--slide-heading-2);
+    line-height: 1.15;
+    margin: 0 0 min(2vh, 1rem);
 }
 
-/* h3見出しの調整 */
 .reveal h3 {
-    font-size: 1.4em !important;
+    font-size: var(--slide-heading-3);
+    line-height: 1.2;
+    margin: 0 0 min(1.5vh, 0.75rem);
 }
 
-/* フィールドリスト（Date, Author等）の調整 */
+.reveal p,
+.reveal ul,
+.reveal ol,
+.reveal blockquote {
+    font-size: var(--slide-body-font);
+    line-height: 1.45;
+    margin: 0 0 min(1.5vh, 0.75rem);
+}
+
+.reveal li {
+    margin: min(1vh, 0.5rem) 0;
+}
+
 .reveal .field-list {
-    font-size: 0.7em !important;
-    margin-top: 1em !important;
-    text-align: left !important;
-    max-width: 90% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    font-size: var(--slide-small-font);
+    margin: min(2vh, 1rem) auto 0;
+    max-width: 90%;
+    line-height: 1.5;
 }
 
 .reveal .field-list .field-name {
-    font-weight: bold !important;
-    min-width: 120px !important;
+    font-weight: 700;
+    padding-right: 0.75em;
+    white-space: nowrap;
 }
 
-/* リストのフォントサイズ調整 */
-.reveal ul, .reveal ol {
-    font-size: 0.8em !important;
-}
-
-/* テーブルのフォントサイズ調整 */
 .reveal table {
-    font-size: 0.7em !important;
+    font-size: var(--slide-small-font);
+    margin: min(2vh, 1rem) auto;
+    border-collapse: collapse;
 }
 
-/* コードブロックのフォントサイズ調整 */
+.reveal th,
+.reveal td {
+    padding: 0.35em 0.75em;
+}
+
 .reveal pre {
-    font-size: 0.6em !important;
+    font-size: clamp(14px, 1.8vw, 22px);
+    line-height: 1.4;
+    max-height: 65vh;
+    overflow: auto;
+    margin: min(2vh, 1rem) 0;
+    border-radius: 0.5rem;
 }
 
 .reveal code {
-    font-size: 0.9em !important;
+    font-size: clamp(16px, 1.8vw, 24px);
 }
 
-/* スライド全体のパディング調整 */
-.reveal .slides {
-    padding: 0 2em !important;
-}
-
-/* ノート（note）の調整 */
 .reveal .admonition {
-    font-size: 0.7em !important;
-    margin: 1em 0 !important;
+    font-size: var(--slide-small-font);
+    line-height: 1.45;
+    margin: min(2vh, 1rem) 0;
+    padding: clamp(12px, 2vw, 20px);
+    border-radius: 0.6rem;
 }
 
-/* センタリングの微調整 */
-.reveal .slides section {
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
+.reveal img,
+.reveal video,
+.reveal iframe {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+}
+
+.reveal .r-stretch {
+    max-height: 70vh;
 }
