@@ -1,0 +1,78 @@
+/* タイトルスライドの調整 */
+.reveal h1 {
+    font-size: 2.2em !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.3em !important;
+    word-wrap: break-word !important;
+}
+
+/* サブタイトルの調整 */
+.reveal .subtitle {
+    font-size: 1.3em !important;
+    margin-top: 0.5em !important;
+}
+
+/* 通常のh2見出しの調整 */
+.reveal h2 {
+    font-size: 1.8em !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5em !important;
+}
+
+/* h3見出しの調整 */
+.reveal h3 {
+    font-size: 1.4em !important;
+}
+
+/* フィールドリスト（Date, Author等）の調整 */
+.reveal .field-list {
+    font-size: 0.7em !important;
+    margin-top: 1em !important;
+    text-align: left !important;
+    max-width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.reveal .field-list .field-name {
+    font-weight: bold !important;
+    min-width: 120px !important;
+}
+
+/* リストのフォントサイズ調整 */
+.reveal ul, .reveal ol {
+    font-size: 0.8em !important;
+}
+
+/* テーブルのフォントサイズ調整 */
+.reveal table {
+    font-size: 0.7em !important;
+}
+
+/* コードブロックのフォントサイズ調整 */
+.reveal pre {
+    font-size: 0.6em !important;
+}
+
+.reveal code {
+    font-size: 0.9em !important;
+}
+
+/* スライド全体のパディング調整 */
+.reveal .slides {
+    padding: 0 2em !important;
+}
+
+/* ノート（note）の調整 */
+.reveal .admonition {
+    font-size: 0.7em !important;
+    margin: 1em 0 !important;
+}
+
+/* センタリングの微調整 */
+.reveal .slides section {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}

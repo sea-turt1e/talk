@@ -33,6 +33,8 @@ revealjs_script_plugins = [
 revealjs_css_files = [
     # プラグインとセットで対応するCSSが同梱されているので、これを追加で使用
     "revealjs/plugin/highlight/zenburn.css",
+    # カスタムCSSを追加
+    "custom.css",
 ]
 
 revealjs_style_theme = 'serif'
@@ -47,3 +49,19 @@ language = "ja"
 
 html_theme = "alabaster"
 html_static_path = ["_static"]
+
+revealjs_script_conf = {
+    "controls": True,
+    "progress": True,
+    "history": True,
+    "center": True,
+    "transition": "none",
+    "slideNumber": "c/t",
+    # スライドのサイズ設定
+    "width": 1280,
+    "height": 720,
+    # コンテンツの自動スケーリング
+    "margin": 0.1,  # スライドの余白
+    "minScale": 0.2,  # 最小スケール
+    "maxScale": 2.0,  # 最大スケール
+}

@@ -6,6 +6,13 @@
   text-transform: none;
 }
 
+.reveal .subtitle {
+  display: block;
+  font-size: 0.6em;
+  margin-top: 0.4em;
+  color: #555;
+}
+
 .reveal table.docutils th {
   background-color: #f5f5f5;
   color: #333;
@@ -20,3 +27,49 @@
   font-size: 0.9em;
   line-height: 1.4;
 }
+
+タイトルを画面サイズに応じて自動縮小し、複数行時のはみ出しを抑える
+.reveal h1 {
+  /* 画面に応じて伸縮するフォントサイズ */
+  font-size: clamp(2.2rem, 6vw + 1rem, 3.8rem) !important;
+  line-height: 1.05 !important;
+  margin: 0.1em 0 0.2em 0 !important;
+  max-width: 92%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  hyphens: auto;
+}
+
+/* サブタイトルを小さく淡い色で中央表示 */
+.reveal .subtitle {
+  display: block;
+  font-size: clamp(0.9rem, 1.4vw + 0.4rem, 1.05rem);
+  margin-top: 0.25em;
+  color: #666;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* メタ情報（Date/Author等）のフォントと配置を調整、左下に寄せたい場合は個別調整可 */
+.reveal .field-list {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* セクション全体の左右パディングを抑えて中央表示を安定化 */
+.reveal .slides section {
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+
+/* さらに強制的に見た目調整したい場合、Reveal の変数を上書き
+   （必要ならコメント解除して調整してください） */
+/*
+:root {
+  --r-main-font-size: 36px;
+  --r-heading1-size: 3.0em;
+}
+*/

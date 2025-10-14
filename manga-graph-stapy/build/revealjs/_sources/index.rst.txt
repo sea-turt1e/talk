@@ -1,7 +1,15 @@
+===============================================
 GraphRAG：グラフDBを使ったLLM生成
-============================================================
+===============================================
 
-自作漫画DBを用いた具体例を用いて
+   自作漫画DBを用いた具体例を用いて
+
+:Date: 20251023
+:Author: `Yamada Hikaru <https://sea-turt1e.github.io/>`_
+:Event: `みんなのPython勉強会#118 <https://startpython.connpass.com/event/371646/>`_
+:X(Twitter): `@sea_turt1e <https://x.com/sea_turt1e>`_
+:GitHub: `sea-turt1e <https://github.com/sea-turt1e>`_
+
 ------------------------------------------------------------
 
 📚 GraphRAGで漫画レコメンドを実現する

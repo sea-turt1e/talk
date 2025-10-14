@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="_static/revealjs/dist/reveal.css?v=d4488b42" />
     <link rel="stylesheet" href="_static/revealjs/dist/theme/serif.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/revealjs/plugin/highlight/zenburn.css?v=83d5745d" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -19,11 +20,27 @@
             <section >
 <section >
 <h1>GraphRAG：グラフDBを使ったLLM生成</h1>
-</section>
-</section>
-<section >
-<section >
-<h2>自作漫画DBを用いた具体例を用いて</h2>
+<blockquote>
+<div><p>自作漫画DBを用いた具体例を用いて</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>20251023</p>
+</dd>
+<dt class="field-even">Author<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://sea-turt1e.github.io/">Yamada Hikaru</a></p>
+</dd>
+<dt class="field-odd">Event<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://startpython.connpass.com/event/371646/">みんなのPython勉強会#118</a></p>
+</dd>
+<dt class="field-even">X(Twitter)<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://x.com/sea_turt1e">&#64;sea_turt1e</a></p>
+</dd>
+<dt class="field-odd">GitHub<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://github.com/sea-turt1e">sea-turt1e</a></p>
+</dd>
+</dl>
+<hr class="docutils" />
 </section>
 </section>
 <section >
@@ -40,10 +57,8 @@
 セッションのゴールを明示し、期待値をそろえます。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>タイムラインとアウトライン</h1>
+<h3>タイムラインとアウトライン</h3>
 <ul class="simple">
 <li><p>📝 セッション構成と時間配分を冒頭で共有</p></li>
 <li><p>20分の全体像を掴んでもらい、聴衆の期待値を合わせる</p></li>
@@ -96,10 +111,8 @@
 <p>細かい時間配分は会場の反応に合わせ柔軟に。全体20分で一周する構成。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>自己紹介</h1>
+<h3>自己紹介</h3>
 <ul class="simple">
 <li><p>👋 sea-turt1e / Data &amp; ML Engineer</p></li>
 <li><p>企業内データ活用と生成AIのPoCを多数担当</p></li>
@@ -111,10 +124,8 @@
 <p>GraphDBに触れるきっかけや、漫画データに注目した経緯を一言添えると親近感が湧きます。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>いま広まるRAGとは</h1>
+<h3>いま広まるRAGとは</h3>
 <ul class="simple">
 <li><p>Retrieval-Augmented Generation</p></li>
 <li><p>ベクトルDB＋プロンプト拡張でLLMの幻覚削減</p></li>
@@ -126,10 +137,8 @@
 <p>グラフの話に入る前に、RAGの仕組みを簡潔にリマインド。図解があるとわかりやすい。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>従来RAGの課題</h1>
+<h3>従来RAGの課題</h3>
 <ul class="simple">
 <li><p>⚠️ 文書の粒度に依存しがちで、関係性の飛び越えが苦手</p></li>
 <li><p>多段の意味推論やパス探索をLLMだけに任せるとコスト・時間が増加</p></li>
@@ -141,10 +150,8 @@
 <p>具体例: 作者とスタッフのつながり、連載誌を跨ぐ文脈など。RAGだけでは拾いにくいケースを示す。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>GraphRAGが拓く可能性</h1>
+<h3>GraphRAGが拓く可能性</h3>
 <ul class="simple">
 <li><p>GraphDBで知識の構造をノード＋エッジとして表現</p></li>
 <li><p>意味的な距離・パスを活用した探索が可能</p></li>
@@ -156,10 +163,8 @@
 <p>「構造化された知識をLLMに橋渡しする技術」と定義づけると腹落ちしやすい。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>データセット: MADBとは</h1>
+<h3>データセット: MADBとは</h3>
 <ul class="simple">
 <li><p>📚 文化庁が公開するメディア芸術データベース（MADB）</p></li>
 <li><p>漫画・アニメ・ゲームなどの作品情報を収録</p></li>
@@ -171,10 +176,8 @@
 <p>漫画領域にフォーカスする理由：人物・作品・メディアの関係がリッチでGraphRAGに向いている。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>グラフモデリングの流れ</h1>
+<h3>グラフモデリングの流れ</h3>
 <ol class="arabic simple">
 <li><p>データ収集: MADB APIからJSONをバッチ取得</p></li>
 <li><p>正規化: 作品／人／メディアなどのエンティティに分割</p></li>
@@ -187,11 +190,9 @@
 <p>各ステップでスキーマ設計、正規化の工夫を紹介。具体的なツール（pandas, networkxなど）に触れる。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>スキーマ設計の例</h1>
-<table class="docutils align-default" id="id14">
+<h3>スキーマ設計の例</h3>
+<table class="docutils align-default" id="id15">
 <caption><span class="caption-text">主なノードとエッジ</span></caption>
 <colgroup>
 <col style="width: 30.0%" />
@@ -228,11 +229,9 @@
 <p>グラフ図を表示できるとベター。テキストでも、エッジの向きと役割を強調する。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>変換パイプライン（実装例）</h1>
-<div class="literal-block-wrapper docutils container" id="id15">
+<h3>変換パイプライン（実装例）</h3>
+<div class="literal-block-wrapper docutils container" id="id16">
 <div class="code-block-caption"><span class="caption-text">データ整形からグラフ投入まで（フローチャート）</span></div>
 <pre><code data-trim data-noescape class="text">MADB API -&gt; ETL Script -&gt; Validation -&gt; Graph DB Loader -&gt; Neo4j
                                 |                         └-&gt; Parquet Snapshot
@@ -248,10 +247,8 @@
 <p>Flow図を示すことで、ETLからグラフ投入までの全体像を共有。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>API設計とユースケース</h1>
+<h3>API設計とユースケース</h3>
 <ul class="simple">
 <li><p>GraphQL or REST APIで作品・人物・タグを横断検索</p></li>
 <li><p>エントリポイント例
@@ -266,10 +263,8 @@
 <p>レコメンド根拠の説明性（Explainability）を重視する点を強調。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>グラフ可視化のアプローチ</h1>
+<h3>グラフ可視化のアプローチ</h3>
 <ul class="simple">
 <li><p>一覧: <code class="docutils literal notranslate"><span class="pre">cytoscape.js</span></code> / <code class="docutils literal notranslate"><span class="pre">Sigma.js</span></code> でWeb向け可視化</p></li>
 <li><p>分析: <code class="docutils literal notranslate"><span class="pre">Gephi</span></code> や <code class="docutils literal notranslate"><span class="pre">Neo4j</span> <span class="pre">Bloom</span></code> でエキスパート向け探索</p></li>
@@ -284,10 +279,8 @@
 <p>スクリーンショットや動画があればデモであわせて紹介。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>GraphRAGパイプライン</h1>
+<h3>GraphRAGパイプライン</h3>
 <ol class="arabic simple">
 <li><p>ユーザーの自然言語クエリを受け取る</p></li>
 <li><p>グラフ検索（パス探索＋属性フィルタ）で候補スニペットを抽出</p></li>
@@ -300,11 +293,9 @@
 <p>Pipelineの各ステップでの工夫（キャッシュ、非同期処理、レート制御）に触れる。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>プロンプト設計の実例</h1>
-<div class="literal-block-wrapper docutils container" id="id16">
+<h3>プロンプト設計の実例</h3>
+<div class="literal-block-wrapper docutils container" id="id17">
 <div class="code-block-caption"><span class="caption-text">コンテキストプロンプトの骨子</span></div>
 <pre><code data-trim data-noescape class="text">あなたは漫画編集部のリコメンドAIです。
 ユーザーの問い: {user_query}
@@ -326,10 +317,8 @@
 <p>プロンプトに制約とフォーマットを明示することの重要性を強調。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>デモの見どころ</h1>
+<h3>デモの見どころ</h3>
 <ul class="simple">
 <li><p>🎞️ クエリ例: 「90年代の熱血スポーツ漫画で、作者が同じ作品を教えて」</p></li>
 <li><p>画面フロー
@@ -343,10 +332,8 @@
 <p>デモではレスポンス時間を意識し、キャッシュ済みシナリオを準備しておくと安心。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>まとめと今後の展望</h1>
+<h3>まとめと今後の展望</h3>
 <ul class="simple">
 <li><p>GraphRAGは「関係性を活かしたLLM活用」に有効</p></li>
 <li><p>グラフ構築は地味だが、説明可能性と再利用性を高める投資</p></li>
@@ -360,10 +347,8 @@
 <p>成果と課題をバランスよく整理し、聴衆の現場での適用イメージを喚起。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>参考リンクとリソース</h1>
+<h3>参考リンクとリソース</h3>
 <ul class="simple">
 <li><p>MADB公式サイト: <a class="reference external" href="https://mediaarts-db.bunka.go.jp/">https://mediaarts-db.bunka.go.jp/</a></p></li>
 <li><p>Neo4j Graph Data Science: <a class="reference external" href="https://neo4j.com/developer/graph-data-science/">https://neo4j.com/developer/graph-data-science/</a></p></li>
@@ -375,10 +360,8 @@
 <p>会場資料ではURL短縮やQRコードを活用すると便利。</p>
 </div>
 </section>
-</section>
 <section >
-<section >
-<h1>Q&amp;A</h1>
+<h3>Q&amp;A</h3>
 <ul class="simple">
 <li><p>ご質問・ディスカッション大歓迎です</p></li>
 <li><p>&#64;sea-turt1e でオンラインでも連絡可能</p></li>
@@ -387,6 +370,8 @@
 <p class="admonition-title">注釈</p>
 <p>最後にお礼と連絡先を簡潔に。予備スライドを備えておくと安心。</p>
 </div>
+</section>
+</section>
 
         </div>
     </div>
@@ -400,7 +385,7 @@
     
     <script>
         var revealjsConfig = new Object();
-        Object.assign(revealjsConfig, {"scrollActivationWidth": null});
+        Object.assign(revealjsConfig, {"controls": true, "progress": true, "history": true, "center": true, "transition": "none", "slideNumber": "c/t", "width": 1280, "height": 720, "margin": 0.1, "minScale": 0.2, "maxScale": 2.0, "scrollActivationWidth": null});
         
         
         
