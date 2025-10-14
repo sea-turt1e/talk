@@ -5,11 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>GraphRAG：グラフDBを使ったLLM生成</title>
+  <title>GraphRAG グラフDBを使ったLLM生成</title>
     <link rel="stylesheet" type="text/css" href="_static/revealjs/dist/reveal.css?v=d4488b42" />
     <link rel="stylesheet" href="_static/revealjs/dist/theme/serif.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/revealjs/plugin/highlight/zenburn.css?v=83d5745d" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/slides.css" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -19,27 +20,10 @@
         <div class="slides" role="main">
             <section >
 <section >
-<h1>GraphRAG：グラフDBを使ったLLM生成</h1>
+<h1>GraphRAG グラフDBを使ったLLM生成</h1>
 <blockquote>
 <div><p>自作漫画DBを用いた具体例を用いて</p>
 </div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Date<span class="colon">:</span></dt>
-<dd class="field-odd"><p>20251023</p>
-</dd>
-<dt class="field-even">Author<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://sea-turt1e.github.io/">Yamada Hikaru</a></p>
-</dd>
-<dt class="field-odd">Event<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://startpython.connpass.com/event/371646/">みんなのPython勉強会#118</a></p>
-</dd>
-<dt class="field-even">X(Twitter)<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://x.com/sea_turt1e">&#64;sea_turt1e</a></p>
-</dd>
-<dt class="field-odd">GitHub<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://github.com/sea-turt1e">sea-turt1e</a></p>
-</dd>
-</dl>
 <hr class="docutils" />
 </section>
 </section>
@@ -192,7 +176,7 @@
 </section>
 <section >
 <h3>スキーマ設計の例</h3>
-<table class="docutils align-default" id="id15">
+<table class="docutils align-default" id="id14">
 <caption><span class="caption-text">主なノードとエッジ</span></caption>
 <colgroup>
 <col style="width: 30.0%" />
@@ -231,7 +215,7 @@
 </section>
 <section >
 <h3>変換パイプライン（実装例）</h3>
-<div class="literal-block-wrapper docutils container" id="id16">
+<div class="literal-block-wrapper docutils container" id="id15">
 <div class="code-block-caption"><span class="caption-text">データ整形からグラフ投入まで（フローチャート）</span></div>
 <pre><code data-trim data-noescape class="text">MADB API -&gt; ETL Script -&gt; Validation -&gt; Graph DB Loader -&gt; Neo4j
                                 |                         └-&gt; Parquet Snapshot
@@ -295,7 +279,7 @@
 </section>
 <section >
 <h3>プロンプト設計の実例</h3>
-<div class="literal-block-wrapper docutils container" id="id17">
+<div class="literal-block-wrapper docutils container" id="id16">
 <div class="code-block-caption"><span class="caption-text">コンテキストプロンプトの骨子</span></div>
 <pre><code data-trim data-noescape class="text">あなたは漫画編集部のリコメンドAIです。
 ユーザーの問い: {user_query}

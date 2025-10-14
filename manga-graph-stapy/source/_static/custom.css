@@ -24,15 +24,16 @@
     box-sizing: border-box;
     max-height: 100%;
     overflow-y: auto;
+    position: relative;
 }
 
 .reveal h1 {
-    font-size: var(--slide-heading-1);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
     line-height: 1.1;
     margin: 0 0 min(2vh, 1rem);
     word-wrap: break-word;
     overflow-wrap: anywhere;
-}
+} 
 
 .reveal h2 {
     font-size: var(--slide-heading-2);
@@ -114,4 +115,30 @@
 
 .reveal .r-stretch {
     max-height: 70vh;
+}
+
+/* 左揃えにする */
+.reveal .align-left {
+    text-align: left;
+}
+
+.reveal .title-meta {
+    position: absolute;
+    left: min(5vw, 3rem);
+    bottom: min(4vh, 2rem);
+    font-size: clamp(12px, 1.4vw, 18px);
+    line-height: 1.45;
+    text-align: left;
+    margin: 0;
+    max-width: 40ch;
+}
+
+.reveal .title-meta .field-list {
+    font-size: inherit;
+    margin: 0;
+    max-width: none;
+}
+
+.reveal .title-meta .field-name {
+    font-weight: 600;
 }

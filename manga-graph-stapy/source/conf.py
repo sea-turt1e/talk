@@ -35,9 +35,10 @@ revealjs_css_files = [
     "revealjs/plugin/highlight/zenburn.css",
     # カスタムCSSを追加
     "custom.css",
+    "slides.css",
 ]
 
-revealjs_style_theme = 'serif'
+revealjs_style_theme = 'serif'  # ここでテーマを指定
 
 templates_path = ["_templates"]
 exclude_patterns = []
